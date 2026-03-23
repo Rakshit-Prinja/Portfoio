@@ -96,18 +96,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }, observerOptions);
 
     // Grab elements to animate
-    const sections = document.querySelectorAll('.content-section');
-    sections.forEach(sec => {
-        sec.classList.add('hidden-scroll');
-        observer.observe(sec);
+    const animElements = document.querySelectorAll('.content-section, .skill-card, .thm-stat-card');
+    animElements.forEach(el => {
+        el.classList.add('hidden-scroll');
+        observer.observe(el);
     });
 
-    // Fallback: Force reveal all sections after 3 seconds if they haven't appeared
-    // This handles edge cases where the observer might not trigger correctly
+    // Fallback: Force reveal all elements after 3 seconds
     setTimeout(() => {
-        sections.forEach(sec => {
-            if (!sec.classList.contains('visible')) {
-                sec.classList.add('visible');
+        animElements.forEach(el => {
+            if (!el.classList.contains('visible')) {
+                el.classList.add('visible');
             }
         });
     }, 3000);
